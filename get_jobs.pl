@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 use 5.014;
 # Un programa per cercar unes receptes catalanes.  
 
@@ -37,7 +38,6 @@ sub carrega {
   my $font_de_dades    = 'http://jobs.perl.org/rss/standard.rss?limit=50';
   my $feed = XML::FeedPP->new($font_de_dades, utf8_flag => 1);
   my $ug               = Data::UUID->new;
-
   # Diu que bulk és possible
   foreach my $job ($feed->get_item()) {
     my $doc = fer_doc($job);
@@ -46,7 +46,8 @@ sub carrega {
     my $uuid = $ug->create_from_name_str(NameSpace_URL, $doc->{url});
 
     # Ja hem vist aquesta recepta?
-    next if $es->exists(id => $uuid);
+    my ($status, $response) = $es->get(id => $uuid);
+    next if ($status == 200);
 
     # Indexa la
     $es->index(id => $uuid, body => $doc);
@@ -70,8 +71,6 @@ sub presenta {
 
 sub fer_doc {
   my $doc = shift;
-
-#  my $description = prep_descripció($recepta->description);
 
   # Heus aquí el recepta (document) per indexar
   return {

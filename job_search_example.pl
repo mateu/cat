@@ -7,7 +7,6 @@ my $es    = Search::Elasticsearch->new;
 my %pesat = (
   perl        => 10,
   linux       => 10,
-  catalunya   => 10,
   javascript  => 5,
   jQuery      => 7,
   AJAX        => 5,
@@ -15,34 +14,18 @@ my %pesat = (
   SQL         => 7,
   benefits    => 5,
   wellness    => 10,
-  'laid-back' => 5,
+  telecommute   => 100,
+  catalunya   => 10,
   amsterdam   => 5,
+  git         => 5,
+  subversion  => -2,
+  svn         => -2,
+  microsoft   => -5,
+  windows     => -5,
+  oracle      => -5,
 );
 
 my $query = {
-  bool => {
-    should => [
-      {
-        match => {
-          _all => {
-            query => 'javascript',
-            boost => 10,
-          }
-        }
-      },
-      {
-        match => {
-          _all => {
-            query => 'perl',
-            boost => 10,
-          }
-        },
-      }
-    ]
-  }
-};
-
-$query = {
   bool => {
     should => [
       map { { match => { _all => { query => $_, boost => $pesat{$_}, } } } }
@@ -61,6 +44,7 @@ my %search_params = (
       }
     }
   },
+  size => 20,
 );
 my $matches = $es->search(%search_params)->{hits}->{hits};
 
@@ -68,4 +52,5 @@ foreach my $job ( @{$matches} ) {
   my $fields = $job->{_source};
   say "Title: ", $fields->{'títol'};
   say "Score: ", $job->{_score};
+  say "URL: ", $fields->{url};
 }

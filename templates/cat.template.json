@@ -1,0 +1,44 @@
+{
+  "template": "cat*",
+  "settings": {
+    "analysis": {
+      "filter": {
+        "catalan_elision": {
+        "type":         "elision",
+            "articles": [ "d", "l", "m", "n", "s", "t"]
+        },
+        "catalan_stop": {
+          "type":       "stop",
+          "stopwords":  "_catalan_" 
+        },
+        "catalan_keywords": {
+          "type":       "keyword_marker",
+          "keywords":   ["porró"] 
+        },
+        "catalan_overrides": {
+          "type": "stemmer_override",
+          "rules": [
+            "porron=>porró"
+          ]
+        },
+        "catalan_stemmer": {
+          "type":       "stemmer",
+          "language":   "catalan"
+        }
+      },
+      "analyzer": {
+        "default": {
+          "tokenizer":  "standard",
+          "filter": [
+            "catalan_elision",
+            "lowercase",
+            "catalan_stop",
+            "catalan_overrides",
+            "catalan_keywords",
+            "catalan_stemmer"
+          ]
+        }
+      }
+    }
+  }
+}

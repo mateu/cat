@@ -1,0 +1,23 @@
+{
+  "template": "cat*",
+  "order": 0,
+  "settings": {
+    "analysis": {
+      "filter": {
+        "catalan_stemmer": {
+          "type":       "stemmer",
+          "language":   "catalan"
+        }
+      },
+      "analyzer": {
+        "cat_stems": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "catalan_stemmer"
+          ]
+        }
+      }
+    }
+  }
+}

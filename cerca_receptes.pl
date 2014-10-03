@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 use 5.014;
 
 use utf8;
@@ -47,7 +48,8 @@ sub carrega {
     my $uuid = $ug->create_from_name_str(NameSpace_URL, $recepta_doc->{url});
 
     # Ja hem vist aquesta recepta?
-    next if $es->exists(id => $uuid);
+    my ($status, $response) = $es->get(id => $uuid);
+    next if ($status == 200);
 
     # Indexa la
     $es->index(id => $uuid, body => $recepta_doc);
@@ -101,7 +103,7 @@ sub es_arguments {
   return (
     host  => 'localhost',
     port  => 9200,
-    index => 'recepta',
-    type => 'cat',
+    index => 'cat',
+    type => 'recepta',
   );
 }

@@ -1,6 +1,5 @@
 #!/usr/bin/env perl
 use 5.014;
-# Un programa per cercar unes receptes catalanes.  
 
 use utf8;
 use warnings;
@@ -34,7 +33,6 @@ sub corre {
 
 sub carrega {
 
-  # Dades sota Creative Commons \o/ moltes gràcies http://receptes.cat/
   my $font_de_dades    = 'http://jobs.perl.org/rss/standard.rss?limit=50';
   my $feed = XML::FeedPP->new($font_de_dades, utf8_flag => 1);
   my $ug               = Data::UUID->new;

@@ -31,6 +31,53 @@ DISTRIBUTIONS
       Test::More 0
       parent 0
       perl 5.008001
+  CPAN-Meta-2.142690
+    pathname: D/DA/DAGOLDEN/CPAN-Meta-2.142690.tar.gz
+    provides:
+      CPAN::Meta 2.142690
+      CPAN::Meta::Converter 2.142690
+      CPAN::Meta::Feature 2.142690
+      CPAN::Meta::History 2.142690
+      CPAN::Meta::Merge 2.142690
+      CPAN::Meta::Prereqs 2.142690
+      CPAN::Meta::Spec 2.142690
+      CPAN::Meta::Validator 2.142690
+    requirements:
+      CPAN::Meta::Requirements 2.121
+      CPAN::Meta::YAML 0.008
+      Carp 0
+      ExtUtils::MakeMaker 6.17
+      JSON::PP 2.27200
+      Parse::CPAN::Meta 1.4414
+      Scalar::Util 0
+      strict 0
+      version 0.88
+      warnings 0
+  CPAN-Meta-Requirements-2.128
+    pathname: D/DA/DAGOLDEN/CPAN-Meta-Requirements-2.128.tar.gz
+    provides:
+      CPAN::Meta::Requirements 2.128
+    requirements:
+      B 0
+      Carp 0
+      ExtUtils::MakeMaker 6.17
+      Scalar::Util 0
+      strict 0
+      version 0.88
+      warnings 0
+  CPAN-Meta-YAML-0.012
+    pathname: D/DA/DAGOLDEN/CPAN-Meta-YAML-0.012.tar.gz
+    provides:
+      CPAN::Meta::YAML 0.012
+    requirements:
+      B 0
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      Fcntl 0
+      Scalar::Util 0
+      strict 0
+      warnings 0
   Capture-Tiny-0.25
     pathname: D/DA/DAGOLDEN/Capture-Tiny-0.25.tar.gz
     provides:
@@ -57,14 +104,6 @@ DISTRIBUTIONS
       base 0
       strict 0
       warnings 0
-  Cpanel-JSON-XS-3.0104
-    pathname: R/RU/RURBAN/Cpanel-JSON-XS-3.0104.tar.gz
-    provides:
-      Cpanel::JSON::XS 3.0104
-    requirements:
-      ExtUtils::MakeMaker 0
-      Pod::Text 2.08
-      Pod::Usage 1.33
   Data-Dumper-Concise-2.022
     pathname: F/FR/FREW/Data-Dumper-Concise-2.022.tar.gz
     provides:
@@ -144,6 +183,45 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       File::Spec 0
       IO::File 0
+      perl 5.006
+  ExtUtils-MakeMaker-6.98
+    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-6.98.tar.gz
+    provides:
+      ExtUtils::Command::MM 6.98
+      ExtUtils::Liblist 6.98
+      ExtUtils::Liblist::Kid 6.98
+      ExtUtils::MM 6.98
+      ExtUtils::MM_AIX 6.98
+      ExtUtils::MM_Any 6.98
+      ExtUtils::MM_BeOS 6.98
+      ExtUtils::MM_Cygwin 6.98
+      ExtUtils::MM_DOS 6.98
+      ExtUtils::MM_Darwin 6.98
+      ExtUtils::MM_MacOS 6.98
+      ExtUtils::MM_NW5 6.98
+      ExtUtils::MM_OS2 6.98
+      ExtUtils::MM_QNX 6.98
+      ExtUtils::MM_UWIN 6.98
+      ExtUtils::MM_Unix 6.98
+      ExtUtils::MM_VMS 6.98
+      ExtUtils::MM_VOS 6.98
+      ExtUtils::MM_Win32 6.98
+      ExtUtils::MM_Win95 6.98
+      ExtUtils::MY 6.98
+      ExtUtils::MakeMaker 6.98
+      ExtUtils::MakeMaker::Config 6.98
+      ExtUtils::MakeMaker::_version 6.98
+      ExtUtils::Mkbootstrap 6.98
+      ExtUtils::Mksymlists 6.98
+      ExtUtils::testlib 6.98
+      MM 6.98
+      MY 6.98
+    requirements:
+      Data::Dumper 0
+      DirHandle 0
+      File::Basename 0
+      File::Spec 0.8
+      Pod::Man 0
       perl 5.006
   File-Listing-6.04
     pathname: G/GA/GAAS/File-Listing-6.04.tar.gz
@@ -407,13 +485,21 @@ DISTRIBUTIONS
     provides:
       JSON::MaybeXS 1.002002
     requirements:
-      Cpanel::JSON::XS 2.3310
       ExtUtils::CBuilder 0.27
       ExtUtils::MakeMaker 0
       File::Spec 0
       File::Temp 0
       JSON::PP 2.27202
       perl 5.006
+  JSON-PP-2.27203
+    pathname: M/MA/MAKAMAKA/JSON-PP-2.27203.tar.gz
+    provides:
+      JSON::PP 2.27203
+      JSON::PP::Boolean 2.27203
+      JSON::PP::IncrParser 2.27203
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   LWP-MediaTypes-6.02
     pathname: G/GA/GAAS/LWP-MediaTypes-6.02.tar.gz
     provides:
@@ -577,6 +663,19 @@ DISTRIBUTIONS
       Scalar::Util 1.18
       Test::More 0.42
       perl 5.00503
+  Parse-CPAN-Meta-1.4414
+    pathname: D/DA/DAGOLDEN/Parse-CPAN-Meta-1.4414.tar.gz
+    provides:
+      Parse::CPAN::Meta 1.4414
+    requirements:
+      CPAN::Meta::YAML 0.011
+      Carp 0
+      Encode 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.30
+      File::Spec 0.80
+      JSON::PP 2.27200
+      strict 0
   Role-Tiny-1.003003
     pathname: H/HA/HAARG/Role-Tiny-1.003003.tar.gz
     provides:

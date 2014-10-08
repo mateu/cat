@@ -3,36 +3,79 @@ use 5.014;
 use utf8;
 
 use Search::Elasticsearch;
-my $es    = Search::Elasticsearch->new;
-my %pesat = (
-  perl        => 10,
-  linux       => 10,
-  javascript  => 5,
-  jQuery      => 7,
-  AJAX        => 5,
-  MySQL       => 5,
-  SQL         => 7,
-  benefits    => 5,
-  wellness    => 10,
-  telecommute   => 100,
-  catalunya   => 10,
-  amsterdam   => 5,
-  git         => 5,
-  subversion  => -2,
-  svn         => -2,
-  microsoft   => -5,
-  windows     => -5,
-  oracle      => -5,
+my $es = Search::Elasticsearch->new(trace_to => [ 'File', 'es.log' ]);
+my %scale = (
+  irrelevant    => 1,
+  little        => 1.5,
+  somewhat      => 3,
+  very          => 20,
+  mandatory     => 100,
+  little_neg    => 0.666,
+  somewhat_neg  => 0.5,
+  very_neg      => 0.05,
+  mandatory_neg => 0,
+);
+my %profile = (
+  linux         => 'mandatory',
+  telecommute   => 'mandatory',
+  elasticsearch => 'mandatory',
+  test          => 'very',
+  cpan          => 'very',
+  git           => 'very',
+  debian        => 'very',
+  postgresql    => 'very',
+  plack         => 'very',
+  'node.js'     => 'very',
+  json          => 'very',
+  moo           => 'very',
+  moose         => 'very',
+  catalyst      => 'very',
+  ubuntu        => 'very',
+  remote        => 'very',
+  benefits      => 'very',
+  wellness      => 'very',
+  mvc           => 'somewhat',
+  math          => 'somewhat',
+  mojolicious   => 'somewhat',
+  dancer        => 'somewhat',
+  nginx         => 'somewhat',
+  javascript    => 'somewhat',
+  jquery        => 'somewhat',
+  ajax          => 'somewhat',
+  mysql         => 'somewhat',
+  sql           => 'somewhat',
+  agile         => 'somewhat',
+  scrum         => 'somewhat',
+  c             => 'little_neg',
+  subversion    => 'little_neg',
+  apache        => 'little_neg',
+  svn           => 'little_neg',
+  java          => 'somewhat_neg',
+  soap          => 'somewhat_neg',
+  cvs           => 'very_neg',
+  microsoft     => 'very_neg',
+  windows       => 'very_neg',
+  oracle        => 'very_neg',
+  eligo         => 'mandatory_neg',
+  taxsys        => 'mandatory_neg',
 );
 
-my $query = {
-  bool => {
-    should => [
-      map { { match => { _all => { query => $_, boost => $pesat{$_}, } } } }
-        keys %pesat
-    ]
-  }
-};
+my $query = { match_all => {} };
+my $functions = [
+  map {
+    {
+      filter => {
+        bool => {
+          should => [
+            { terms => { 'títol'      => [$_] } },
+            { terms => { 'descripció' => [$_] } },
+          ]
+        }
+      },
+      boost_factor => $scale{ $profile{$_} },
+    },
+    } keys %profile
+];
 
 my %search_params = (
   index => 'jobs',
@@ -40,17 +83,18 @@ my %search_params = (
   body  => {
     query => {
       function_score => {
-        query => $query
+        query      => $query,
+        boost_mode => 'replace',
+        score_mode => 'multiply',
+        functions  => $functions,
       }
     }
   },
-  size => 20,
 );
 my $matches = $es->search(%search_params)->{hits}->{hits};
-
-foreach my $job ( @{$matches} ) {
+foreach my $job (@{$matches}) {
   my $fields = $job->{_source};
   say "Title: ", $fields->{'títol'};
   say "Score: ", $job->{_score};
-  say "URL: ", $fields->{url};
+  say "URL: ",   $fields->{url};
 }

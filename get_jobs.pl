@@ -11,7 +11,7 @@ use XML::FeedPP;
 use Elastijk;
 use Data::UUID;
 
-my $carregar   = 0;
+my $carregar   = 1;
 my $mot_cercar = 'porros';
 GetOptions(
   "carregar"     => \$carregar,
